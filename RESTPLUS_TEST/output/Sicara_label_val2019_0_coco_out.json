@@ -1,0 +1,60 @@
+{
+    "info": {
+        "description": null,
+        "url": null,
+        "version": null,
+        "year": 2019,
+        "contributor": "Yraimtj",
+        "date_created": "2019-10-15 12:33:34.447223"
+    },
+    "identifications": [
+        {
+            "data": [
+                205.34942626953125,
+                376.2467041015625,
+                457.3699951171875,
+                633.7286224365234
+            ],
+            "type": "boundingBox",
+            "errors": [],
+            "category": "Annotation",
+            "attributes": {
+                "label": "SAL_DESS_BAR"
+            },
+            "proba": 0.9995836615562439,
+            "polygone": null
+        },
+        {
+            "data": [
+                415.42724609375,
+                761.760986328125,
+                284.3316192626953,
+                648.1414489746094
+            ],
+            "type": "boundingBox",
+            "errors": [],
+            "category": "Annotation",
+            "attributes": {
+                "label": "RAVIOLES_BIO"
+            },
+            "proba": 0.9825829267501831,
+            "polygone": null
+        },
+        {
+            "data": [
+                245.2753448486328,
+                358.8485107421875,
+                245.86310577392578,
+                396.7939910888672
+            ],
+            "type": "boundingBox",
+            "errors": [],
+            "category": "Annotation",
+            "attributes": {
+                "label": "MIRABELLE"
+            },
+            "proba": 0.9450926184654236,
+            "polygone": null
+        }
+    ]
+}

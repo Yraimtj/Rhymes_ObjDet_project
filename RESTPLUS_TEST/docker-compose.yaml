@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+
+  tf-serving-server:
+    container_name: tf-serving-server
+    image: yraimtj/tensorflow_serving_server_gan:v2.0
+    command: /tensorflow-serving/serving/bazel-bin/tensorflow_serving/model_servers/tensorflow_model_server --port=9000 --model_name=gan --model_base_path=/tensorflow-serving/serving/Sicara_export_model &> sicara_log &
+    networks:
+      - tf_serving
+    ports:
+      - "9000:9000"
+
+  tf-serving-client:
+    container_name: tf-serving-client
+    image: yraimtj/tensorflow_serving_client_sicara:first
+    networks:
+      - tf_serving
+    ports:
+      - "5000:5000"
+    environment:
+      - TF_SERVER_NAME=tf-serving-server
+      - TF_SERVER_PORT=9000
+      - FLASK_SERVER_NAME=0.0.0.0
+      - FLASK_SERVER_PORT=5000
+      - FLASK_DEBUG=1
+    volumes:
+      - ./:/app
+    depends_on:
+      - tf-serving-server
+    # labels:
+    #   kompose.service.type: LoadBalancer
+
+networks:
+  tf_serving:
+    driver: bridge

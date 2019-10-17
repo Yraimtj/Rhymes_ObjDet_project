@@ -1,0 +1,28 @@
+{
+    "info": {
+        "description": null,
+        "url": null,
+        "version": null,
+        "year": 2019,
+        "contributor": "Yraimtj",
+        "date_created": "2019-10-15 12:33:34.447223"
+    },
+    "identifications": [
+        {
+            "data": [
+                924.5028686523438,
+                1024.0,
+                324.41432189941406,
+                591.0961303710938
+            ],
+            "type": "boundingBox",
+            "errors": [],
+            "category": "Annotation",
+            "attributes": {
+                "label": "SAL_DESS_BAR"
+            },
+            "proba": 0.9312577843666077,
+            "polygone": null
+        }
+    ]
+}

@@ -1,0 +1,13 @@
+json
+pandas
+hashlib
+numpy
+Pillow
+urllib3
+ast
+collections
+glob3
+scipy 
+scikit-learn
+tensorflow>=1.12
+

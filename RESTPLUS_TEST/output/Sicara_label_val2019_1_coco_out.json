@@ -1,0 +1,44 @@
+{
+    "info": {
+        "description": null,
+        "url": null,
+        "version": null,
+        "year": 2019,
+        "contributor": "Yraimtj",
+        "date_created": "2019-10-15 12:33:34.447223"
+    },
+    "identifications": [
+        {
+            "data": [
+                550.33984375,
+                755.6198120117188,
+                505.2578887939453,
+                710.0781555175781
+            ],
+            "type": "boundingBox",
+            "errors": [],
+            "category": "Annotation",
+            "attributes": {
+                "label": "SAL_DESS_BAR"
+            },
+            "proba": 0.9986510872840881,
+            "polygone": null
+        },
+        {
+            "data": [
+                158.82449340820312,
+                371.5224914550781,
+                438.39463806152344,
+                645.5933074951172
+            ],
+            "type": "boundingBox",
+            "errors": [],
+            "category": "Annotation",
+            "attributes": {
+                "label": "SAL_DESS_BAR"
+            },
+            "proba": 0.99837327003479,
+            "polygone": null
+        }
+    ]
+}

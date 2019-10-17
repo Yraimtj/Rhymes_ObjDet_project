@@ -1,0 +1,28 @@
+{
+    "info": {
+        "description": null,
+        "url": null,
+        "version": null,
+        "year": 2019,
+        "contributor": "Yraimtj",
+        "date_created": "2019-10-15 12:33:34.447223"
+    },
+    "identifications": [
+        {
+            "data": [
+                657.2271728515625,
+                756.0059204101562,
+                476.1302032470703,
+                578.2378692626953
+            ],
+            "type": "boundingBox",
+            "errors": [],
+            "category": "Annotation",
+            "attributes": {
+                "label": "PECHE"
+            },
+            "proba": 0.9518983364105225,
+            "polygone": null
+        }
+    ]
+}

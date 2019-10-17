@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+</head>
+<body>
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-lg-12">
+            <h1 class="page-header">OK GOOGLE</h1>
+        </div>
+    </div>
+    <div class="row">
+	    {% for item in decorate_images %}
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 thumb">
+            <img class="img-responsive" src=" {{url_for('get_gallery', filena=item)}}">
+             <!-- {{item}} /  -->
+        </div>   
+    	{% endfor %}
+    </div> 
+    <div class="row">
+        <hr>
+        {% for image_name in image_names %}
+        <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+            <img src=" {{url_for('uploaded_file', filename=image_name)}}" width="250" height="150">
+	        {{image_name}}
+        </div>
+        {% endfor %}
+        </hr><br/>
+    </div>   
+
+</div>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+        integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+        crossorigin="anonymous"></script>
+
+</body>
+</html>

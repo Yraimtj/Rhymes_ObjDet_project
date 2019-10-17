@@ -1,0 +1,60 @@
+{
+    "info": {
+        "description": null,
+        "url": null,
+        "version": null,
+        "year": 2019,
+        "contributor": "Yraimtj",
+        "date_created": "2019-10-15 12:33:34.447223"
+    },
+    "identifications": [
+        {
+            "data": [
+                563.531005859375,
+                669.1882934570312,
+                242.5986785888672,
+                527.8176727294922
+            ],
+            "type": "boundingBox",
+            "errors": [],
+            "category": "Annotation",
+            "attributes": {
+                "label": "EAU_50_CL"
+            },
+            "proba": 0.9946426153182983,
+            "polygone": null
+        },
+        {
+            "data": [
+                649.2346801757812,
+                814.861572265625,
+                392.68885803222656,
+                565.7190856933594
+            ],
+            "type": "boundingBox",
+            "errors": [],
+            "category": "Annotation",
+            "attributes": {
+                "label": "SAL_DESS_BAR"
+            },
+            "proba": 0.9939542412757874,
+            "polygone": null
+        },
+        {
+            "data": [
+                171.07382202148438,
+                521.2449340820312,
+                311.5507278442383,
+                675.0236206054688
+            ],
+            "type": "boundingBox",
+            "errors": [],
+            "category": "Annotation",
+            "attributes": {
+                "label": "BURGER"
+            },
+            "proba": 0.9920966625213623,
+            "polygone": null
+        }
+    ]
+}

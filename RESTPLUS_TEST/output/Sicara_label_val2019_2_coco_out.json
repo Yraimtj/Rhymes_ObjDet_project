@@ -1,0 +1,60 @@
+{
+    "info": {
+        "description": null,
+        "url": null,
+        "version": null,
+        "year": 2019,
+        "contributor": "Yraimtj",
+        "date_created": "2019-10-15 12:33:34.447223"
+    },
+    "identifications": [
+        {
+            "data": [
+                655.2413330078125,
+                868.3865966796875,
+                502.86529541015625,
+                701.6553497314453
+            ],
+            "type": "boundingBox",
+            "errors": [],
+            "category": "Annotation",
+            "attributes": {
+                "label": "SAL_DESS_BAR"
+            },
+            "proba": 0.9964403510093689,
+            "polygone": null
+        },
+        {
+            "data": [
+                250.46006774902344,
+                361.47857666015625,
+                575.7439270019531,
+                698.2608947753906
+            ],
+            "type": "boundingBox",
+            "errors": [],
+            "category": "Annotation",
+            "attributes": {
+                "label": "PAIN"
+            },
+            "proba": 0.9919481873512268,
+            "polygone": null
+        },
+        {
+            "data": [
+                584.6298217773438,
+                787.2224731445312,
+                252.69332885742188,
+                541.5795135498047
+            ],
+            "type": "boundingBox",
+            "errors": [],
+            "category": "Annotation",
+            "attributes": {
+                "label": "SAL_DESS_BAR"
+            },
+            "proba": 0.9814855456352234,
+            "polygone": null
+        }
+    ]
+}

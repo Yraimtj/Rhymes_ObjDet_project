@@ -1,0 +1,28 @@
+{
+    "info": {
+        "description": null,
+        "url": null,
+        "version": null,
+        "year": 2019,
+        "contributor": "Yraimtj",
+        "date_created": "2019-10-15 12:33:34.447223"
+    },
+    "identifications": [
+        {
+            "data": [
+                279.7365417480469,
+                634.7593383789062,
+                273.20235443115234,
+                659.9459381103516
+            ],
+            "type": "boundingBox",
+            "errors": [],
+            "category": "Annotation",
+            "attributes": {
+                "label": "PAELLA"
+            },
+            "proba": 0.9070427417755127,
+            "polygone": null
+        }
+    ]
+}
