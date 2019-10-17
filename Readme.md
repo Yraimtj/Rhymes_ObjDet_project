@@ -10,26 +10,22 @@ Depending on the algorithms type we can obtains an image with bounding box or a 
 And finally to deploy the model, we 'll use a the TensorFlow Serving serving system combine with a Flask web framework.
 
 <p align="center">
-  <img src="img/Selection_001.png" width=300 height=250>
+  <img src="img/Selection_001.png" width=676 height=450>
 </p>
 
 **TABLE OF CONTENTS:**
 ======================
+ [REQUIREMENTS :](#requirements)
+ [INSTALLATION :](#installation--)
+       [Install Tensorflow Object Detection API](#install-tensorflow-object-detection-api)
+ [STEP:](#step-)
+ + [Step 1: Convert Rhymes_dataset to Cocoformat](#step-1--convert-rhymes-dataset-to-cocoformat)
+ + [Step 2: Run a trainning process Locally](#step-2--run-a-trainning-process-locally)
+ + [Step 3: Export the model To create models ready for serving using export_model.py](#step-3--export-the-model-to-create-models-ready-for-serving-using-export-modelpy)
+ + [Step 4:Deploying Object Detection Model with TensorFlow Serving - Flask - Docker](#step-4-deploying-object-detection-model-with-tensorflow-serving---flask---docker)
+ + [Step 5: Run the app](#step-5--run-the-app)
 
-[TOC]
-
-
-         [REQUIREMENTS :](#requirements)
-         [INSTALLATION :](#installation--)
-               [Install Tensorflow Object Detection API](#install-tensorflow-object-detection-api)
-         [STEP:](#step-)
-         + [Step 1: Convert Rhymes_dataset to Cocoformat](#step-1--convert-rhymes-dataset-to-cocoformat)
-         + [Step 2: Run a trainning process Locally](#step-2--run-a-trainning-process-locally)
-         + [Step 3: Export the model To create models ready for serving using export_model.py](#step-3--export-the-model-to-create-models-ready-for-serving-using-export-modelpy)
-         + [Step 4:Deploying Object Detection Model with TensorFlow Serving - Flask - Docker](#step-4-deploying-object-detection-model-with-tensorflow-serving---flask---docker)
-         + [Step 5: Run the app](#step-5--run-the-app)
-
-
+<a name="requirements"></a>
 # REQUIREMENTS :
 1. Python, TensorFlow 1.12, Pandas, Docker and other common packages listed in requirements.txt.
 2. You also need :
@@ -37,6 +33,7 @@ And finally to deploy the model, we 'll use a the TensorFlow Serving serving sys
 	* the Tensorflow Object Detection API
 3. A valid Rhymes dataset in a csv file and the category csv file who contains the differents class in the dataset.
 
+<a name="installation--"></a>
 # INSTALLATION :
 
 1. Clone this repository
@@ -69,6 +66,7 @@ The Tensorflow Object Detection API uses Protobufs to configure model and traini
 ```
 6. Install Docker
 
+<a name="step-"></a>
 # STEP:
 ### Step 1: Convert Rhymes_dataset to Cocoformat
 For the aim of using the rhymes dataset in the trainning step, we need to convet this to the cocoformat. ie the annotation must be formatted in JSON and contains a collection of “info”, “licenses”, “images”, “annotations”, “categories”.
