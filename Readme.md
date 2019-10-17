@@ -5,12 +5,12 @@ TensorFlow’s Object Detection API is a very powerful tool that can quickly ena
 
 The goal is to detect all instances of objects from a known class, such as people, cars, faces, or a type of food in a given image. For this purpose we can use different prominent algorithms for detection such as Fast Region-based Convolutional Neural Network (Fast R-CNN), Faster Region-based Convolutional Neural Network (Faster R-CNN), Mask R-CNN... But before we need to convert our dataset format to the format that can be accepted by the Tensorflow' Object detection API, ie in coco_format.
 
-Depending of the algorithms type we can obtains an image with bounding box or a mask (polygon).
+Depending on the algorithms type we can obtains an image with bounding box or a mask (polygon).
 
 And finally to deploy the model, we 'll use a the TensorFlow Serving serving system combine with a Flask web framework.
 
 <p align="center">
-  <img src="img/Selection_001.png" width=140 height=195>
+  <img src="img/Selection_001.png" width=300 height=250>
 </p>
 
 **TABLE OF CONTENTS:**
@@ -167,7 +167,7 @@ The web server receives REST requests from the outside, transforms them into pro
 
 Image
 <p align="center">
-  <img src="img/Selection_003.png" width=140 height=195>
+  <img src="img/Selection_003.png" width=250 height=300>
 </p>
 
 1- Create the Tensorflow server with the model:
@@ -289,7 +289,7 @@ Now we start our complete application with just one command:
 You need to upload the label_map.pbtxt file and the image to predict.
 
 <p align="center">
-  <img src="img/Selection_002.png" width=140 height=195>
+  <img src="img/Selection_002.png" width=300 height=250>
 </p>
 
 ## Resources
