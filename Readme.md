@@ -15,15 +15,15 @@ And finally to deploy the model, we 'll use a the TensorFlow Serving serving sys
 
 **TABLE OF CONTENTS:**
 ======================
- [REQUIREMENTS :](#requirements)
- [INSTALLATION :](#installation--)
-       [Install Tensorflow Object Detection API](#install-tensorflow-object-detection-api)
- [STEP:](#step-)
- + [Step 1: Convert Rhymes_dataset to Cocoformat](#step-1--convert-rhymes-dataset-to-cocoformat)
- + [Step 2: Run a trainning process Locally](#step-2--run-a-trainning-process-locally)
- + [Step 3: Export the model To create models ready for serving using export_model.py](#step-3--export-the-model-to-create-models-ready-for-serving-using-export-modelpy)
- + [Step 4:Deploying Object Detection Model with TensorFlow Serving - Flask - Docker](#step-4-deploying-object-detection-model-with-tensorflow-serving---flask---docker)
- + [Step 5: Run the app](#step-5--run-the-app)
+- [REQUIREMENTS :](#requirements)
+- [INSTALLATION :](#installation--)
+ + [Install Tensorflow Object Detection API](#install-tensorflow-object-detection-api)
+- [STEP:](#step-)
+ + [Step 1: Convert Rhymes_dataset to Cocoformat](#step-1)
+ + [Step 2: Run a trainning process Locally](#step-2)
+ + [Step 3: Export the model To create models ready for serving using export_model.py](#step-3)
+ + [Step 4:Deploying Object Detection Model with TensorFlow Serving - Flask - Docker](#step-4)
+ + [Step 5: Run the app](#step-5)
 
 <a name="requirements"></a>
 # REQUIREMENTS :
@@ -68,6 +68,7 @@ The Tensorflow Object Detection API uses Protobufs to configure model and traini
 
 <a name="step-"></a>
 # STEP:
+<a name="step-1"></a>
 ### Step 1: Convert Rhymes_dataset to Cocoformat
 For the aim of using the rhymes dataset in the trainning step, we need to convet this to the cocoformat. ie the annotation must be formatted in JSON and contains a collection of “info”, “licenses”, “images”, “annotations”, “categories”.
 
@@ -84,6 +85,7 @@ It will Split the dataset into Train and Validation set by giving the "test_size
 ```
 Don't forget the 'include_mask' argument.
 
+<a name="step-2"></a>
 ### Step 2: Run a trainning process Locally
 * Create the label_map file with :
 ```
@@ -138,7 +140,7 @@ Run the following command:
 	tensorboard --logdir=${MODEL_DIR}
 ```
 
-
+<a name="step-3"></a>
 ### Step 3: Export the model To create models ready for serving using export_model.py
 After you have trained your object detection model using TensorFlow, you will have the following four files saved in your disk:
 ```
@@ -163,7 +165,7 @@ python export_model.py \
 
 In the output\_directory/1/ you should have **_variables_** folder and **_saved\_model.pb_** file which contains respectively the weights for the model and the model architecture. This model is ready to be served.
 
-	
+<a name="step-4"></a>	
 ### Step 4:Deploying Object Detection Model with TensorFlow Serving - Flask - Docker
 Usually when making an API public we use HTTP(S) and REST but not with gRPC and protobufs. In order to deploy our model with the advantage of using gRPC and Protobufs and direct use of classes generated from Protobufs , we use an approach composed by a Web server that hosts a TensorFlow Serving client and a TensorFlow Server that provides gRPC interface only.
 
@@ -274,7 +276,7 @@ In the RESPLUS_TEST directory you 'll see the following folder and file:
 ```
 - push to dockerhub
 
-
+<a name="step-5"></a>
 ### Step 5: Run the app
 * Use DOCKER COMPOSE to run the TensorFlow server and the Flask application together
 
@@ -293,7 +295,7 @@ Now we start our complete application with just one command:
 You need to upload the label_map.pbtxt file and the image to predict.
 
 <p align="center">
-  <img src="img/Selection_002.png" width=300 height=250>
+  <img src="img/Selection_002.png" width=676 height=450>
 </p>
 
 ## Resources
