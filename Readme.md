@@ -19,15 +19,15 @@ And finally to deploy the model, we 'll use a the TensorFlow Serving serving sys
 [TOC]
 
 
-- [REQUIREMENTS :](#requirements)
-- [INSTALLATION :](#installation--)
-        * [Install Tensorflow Object Detection API](#install-tensorflow-object-detection-api)
-- [STEP:](#step-)
-    + [Step 1: Convert Rhymes_dataset to Cocoformat](#step-1--convert-rhymes-dataset-to-cocoformat)
-    + [Step 2: Run a trainning process Locally](#step-2--run-a-trainning-process-locally)
-    + [Step 3: Export the model To create models ready for serving using export_model.py](#step-3--export-the-model-to-create-models-ready-for-serving-using-export-modelpy)
-    + [Step 4:Deploying Object Detection Model with TensorFlow Serving - Flask - Docker](#step-4-deploying-object-detection-model-with-tensorflow-serving---flask---docker)
-    + [Step 5: Run the app](#step-5--run-the-app)
+         [REQUIREMENTS :](#requirements)
+         [INSTALLATION :](#installation--)
+               [Install Tensorflow Object Detection API](#install-tensorflow-object-detection-api)
+         [STEP:](#step-)
+         + [Step 1: Convert Rhymes_dataset to Cocoformat](#step-1--convert-rhymes-dataset-to-cocoformat)
+         + [Step 2: Run a trainning process Locally](#step-2--run-a-trainning-process-locally)
+         + [Step 3: Export the model To create models ready for serving using export_model.py](#step-3--export-the-model-to-create-models-ready-for-serving-using-export-modelpy)
+         + [Step 4:Deploying Object Detection Model with TensorFlow Serving - Flask - Docker](#step-4-deploying-object-detection-model-with-tensorflow-serving---flask---docker)
+         + [Step 5: Run the app](#step-5--run-the-app)
 
 
 # REQUIREMENTS :
