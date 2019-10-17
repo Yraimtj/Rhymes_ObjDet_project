@@ -14,7 +14,12 @@ And finally to deploy the model, we 'll use a the TensorFlow Serving serving sys
 </p>
 
 **TABLE OF CONTENTS:**
-- [REQUIREMENTS :](#requirements--)
+======================
+
+[TOC]
+
+
+- [REQUIREMENTS :](#requirements)
 - [INSTALLATION :](#installation--)
         * [Install Tensorflow Object Detection API](#install-tensorflow-object-detection-api)
 - [STEP:](#step-)
@@ -23,6 +28,7 @@ And finally to deploy the model, we 'll use a the TensorFlow Serving serving sys
     + [Step 3: Export the model To create models ready for serving using export_model.py](#step-3--export-the-model-to-create-models-ready-for-serving-using-export-modelpy)
     + [Step 4:Deploying Object Detection Model with TensorFlow Serving - Flask - Docker](#step-4-deploying-object-detection-model-with-tensorflow-serving---flask---docker)
     + [Step 5: Run the app](#step-5--run-the-app)
+
 
 # REQUIREMENTS :
 1. Python, TensorFlow 1.12, Pandas, Docker and other common packages listed in requirements.txt.
