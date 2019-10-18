@@ -257,7 +257,7 @@ __2- Create the Web server with the Tensorflow Serving Client by using Flask web
 In this part we create the client that is able “talk” over TensorFlow Serving works on gRPC protocol (tf_serving_sicara_client), use Flask as Web framework to host my TensorFlow client (api_meero.py) and Dockerize the Flask application.
 * _change directory to RESTPLUS_
 
-In the RESPLUS_TEST directory you 'll see the following folder and file:
+In the RESTPLUS directory you 'll see the following folder and file:
 
      - api_meero.py:entry point of the application. Here you find configuration and initialization steps.
 
