@@ -252,7 +252,7 @@ Push the image
 	docker push yourhubusername/tensorflow-serving-server-sicara
 ```
 
-2- Create the Web server with the Tensorflow Serving Client by using Flask web application
+__2- Create the Web server with the Tensorflow Serving Client by using Flask web application__
 
 In this part we create the client that is able “talk” over TensorFlow Serving works on gRPC protocol (tf_serving_sicara_client), use Flask as Web framework to host my TensorFlow client (api_meero.py) and Dockerize the Flask application.
 * _change directory to RESTPLUS_
@@ -265,25 +265,30 @@ In the RESPLUS_TEST directory you 'll see the following folder and file:
 
      - requirement: contains the dependencies to install for the app.
 
-     - tensorflow_serving/: this folder contains TensorFlow Serving API, which is generated from TensorFlow protobufs.
+     - tensorflow_serving/: this folder contains TensorFlow Serving API, which is generated 
+
+from TensorFlow protobufs.
 
      - api/gan/: this sub-folder contains  logic for prediction.
 
-     - /api/gan/logic/tf_serving_client.py: TensorFlow client that sends requests to and pre-processes responses from TensorFlow server.
+     - /api/gan/logic/tf_serving_client.py: TensorFlow client that sends requests to and pre-processes responses 
+
+from TensorFlow server.
 
      - /api/gan/logic/utils/fonction_util.py : contains different function to use in the prediction.
 
      - templates/: contains static data as well as placeholders for dynamic data used by Flask.
 
-     - doc/ : folder for the 
+     - doc/ : contains images for decoration of the app.
 
      - upload_folder/: contains the file that are upload from the app.
 
-     - output/: output file predicted 
+     - output/: output file predicted.
 
 * _Dockerize the Flask application (dockerfile)_
+
 ```
-    cd to the restplus
+    cd RESTPLUS/
     docker build -t $USER/tensorflow-serving-client:latest .
 ```
 * _push to dockerhub_
@@ -299,11 +304,11 @@ I provided docker-compose.yaml. It is really simple and self-explained.
 Now we start our complete application with just one command:
 
 ```
-    cd <path to Flask application project>
     docker-compose -f docker-compose.yaml up
 ```
 
-* Test by typing the address http://0.0.0.0:5000/ and call prediction
+* Test by typing the address http://0.0.0.0:5000/ and call prediction.
+
 You need to upload the label_map.pbtxt file and the image to predict.
 
 <p align="center">
@@ -311,7 +316,7 @@ You need to upload the label_map.pbtxt file and the image to predict.
 </p>
 
 ### TODO
-deploy in cloud with Kubernetes
+Deploy in cloud with Kubernetes
 ## Resources
 - [TensorFlow Object Detection API](https://github.com/tensorflow/models/tree/master/research/object_detection)
 - This 2 blog : [Blog 1](https://towardsdatascience.com/how-to-deploy-machine-learning-models-with-tensorflow-part-1-make-your-model-ready-for-serving-776a14ec3198) , [Blog 2](https://medium.com/innovation-machine/deploying-object-detection-model-with-tensorflow-serving-7f12ee59b036)
