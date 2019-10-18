@@ -176,8 +176,9 @@ Image
   <img src="img/Selection_003.png" width=250 height=300>
 </p>
 
-1- Create the Tensorflow server with the model:
-	- *Build the container using the official tf_serving docker image*
+__1- Create the Tensorflow server with the model:__
+
+* _Build the container using the official tf\_serving docker image_
 
 First clone the repository
 ```
@@ -206,7 +207,7 @@ Now we can run Docker container:
 ```
 If everything works as expected, congratulations! You are now in the Shell of TensorFlow Serving Docker container.
 
-	- *copy the model in the container*
+* _copy the model in the container_
 
 First create a working directory
 from shell in the running container:
@@ -229,14 +230,14 @@ You should have the exported model folder in the container. From the Shell:
 ```
 You should see the variables folder and saved_model.pb file.
 
-	- *commit the change to create a new docker image*
+* _commit the change to create a new docker image_
 
 Now we can create Docker image from our container:
 ```
     docker commit 7ff0abed7538 $USER/tensorflow-serving-sicara:v1.0
 ```
 
-	- *push this docker image to dockerhub ==> TensorFlow Server who host the model*
+* _push this docker image to dockerhub ==> TensorFlow Server who host the model_
 
 Login to your dockerhub account
 ```
@@ -254,7 +255,7 @@ Push the image
 2- Create the Web server with the Tensorflow Serving Client by using Flask web application
 
 In this part we create the client that is able “talk” over TensorFlow Serving works on gRPC protocol (tf_serving_sicara_client), use Flask as Web framework to host my TensorFlow client (api_meero.py) and Dockerize the Flask application.
-	- *change directory to RESTPLUS*
+* _change directory to RESTPLUS_
 
 In the RESPLUS_TEST directory you 'll see the following folder and file:
 
@@ -280,12 +281,12 @@ In the RESPLUS_TEST directory you 'll see the following folder and file:
 
      - output/: output file predicted 
 
-	- *Dockerize the Flask application (dockerfile)*
+* _Dockerize the Flask application (dockerfile)_
 ```
     cd to the restplus
     docker build -t $USER/tensorflow-serving-client:latest .
 ```
-	- *push to dockerhub*
+* _push to dockerhub_
 
 <a name="step-5"></a>
 ### Step 5: Run the app
