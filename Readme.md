@@ -22,7 +22,7 @@ And finally to deploy the model, we 'll use a the TensorFlow Serving serving sys
 	* [Step 1: Convert Rhymes_dataset to Cocoformat](#step-1)
 	* [Step 2: Run a trainning process Locally](#step-2)
 	* [Step 3: Export the model To create models ready for serving using export_model.py](#step-3)
-	* [Step 4:Deploying Object Detection Model with TensorFlow Serving - Flask - Docker](#step-4)
+	* [Step 4: Deploying Object Detection Model with TensorFlow Serving - Flask - Docker](#step-4)
 	* [Step 5: Run the app](#step-5)
 
 <a name="requirements"></a>
@@ -41,7 +41,7 @@ And finally to deploy the model, we 'll use a the TensorFlow Serving serving sys
 2. Install dependencies
 
 ```
-	pip3 install -r requirement.txt 
+	pip install -r requirement.txt 
 ```
 
 
@@ -177,15 +177,15 @@ Image
 </p>
 
 1- Create the Tensorflow server with the model:
-- Build the container using the official tf_serving docker image
+	- *Build the container using the official tf_serving docker image*
 
 First clone the repository
 ```
     cd ~
     git clone https://github.com/tensorflow/serving.git
-    ```
-     Build Docker image and run container
-     ```
+```
+Build Docker image and run container
+```
      # Move to the directory of the docker files
     cd ./serving/tensorflow_serving/tools/docker/
     
@@ -202,11 +202,11 @@ It takes about an hour or more to download dependencies and build the image…
 Now we can run Docker container:
 
 ```
-    docker run --name=tf_container_cpu -it $USER/tensorflow-serving-devel-gpu
+    docker run --name=tf_container_cpu -it $USER/tensorflow-serving-devel-cpu
 ```
 If everything works as expected, congratulations! You are now in the Shell of TensorFlow Serving Docker container.
 
-- copy the model in the container
+	- *copy the model in the container*
 
 First create a working directory
 from shell in the running container:
@@ -221,7 +221,7 @@ Copy the exported model (see step 3) into TensorFlow container. From Shell on yo
 	docker cp ./1 7ff0abed7538:/tensorflow-serving/serving/Sicara_project
 ```
 
-You should have the exported model folder in the container. From its Shell:
+You should have the exported model folder in the container. From the Shell:
 
 ```
     cd /serving
@@ -229,17 +229,16 @@ You should have the exported model folder in the container. From its Shell:
 ```
 You should see the variables folder and saved_model.pb file.
 
-- commit the change to create a new docker image
+	- *commit the change to create a new docker image*
 
 Now we can create Docker image from our container:
 ```
     docker commit 7ff0abed7538 $USER/tensorflow-serving-sicara:v1.0
 ```
 
-- push this docker image to dockerhub ==> TensorFlow Server who host the model
+	- *push this docker image to dockerhub ==> TensorFlow Server who host the model*
 
-To make our docker image available for the app we'll push this in DockerHub
-login to your dockerhub account
+Login to your dockerhub account
 ```
 	docker login
 ```
@@ -247,34 +246,46 @@ tag your image
 ```
 	docker tag image\_name yourhubusername/tensorflow-serving-server-sicara:firsttry
 ```
-push the image
+Push the image
 ```
 	docker push yourhubusername/tensorflow-serving-server-sicara
 ```
 
 2- Create the Web server with the Tensorflow Serving Client by using Flask web application
+
 In this part we create the client that is able “talk” over TensorFlow Serving works on gRPC protocol (tf_serving_sicara_client), use Flask as Web framework to host my TensorFlow client (api_meero.py) and Dockerize the Flask application.
-- change directory to RESTPLUS_TEST
+	- *change directory to RESTPLUS*
 
 In the RESPLUS_TEST directory you 'll see the following folder and file:
+
      - api_meero.py:entry point of the application. Here you find configuration and initialization steps.
+
      - settings.py: setting contstants.
-     - requirement: contains the dependencies to install for the app
+
+     - requirement: contains the dependencies to install for the app.
+
      - tensorflow_serving/: this folder contains TensorFlow Serving API, which is generated from TensorFlow protobufs.
+
      - api/gan/: this sub-folder contains  logic for prediction.
+
      - /api/gan/logic/tf_serving_client.py: TensorFlow client that sends requests to and pre-processes responses from TensorFlow server.
-     - /api/gan/logic/utils/fonction_util.py : contains different function to use in the prediction 
+
+     - /api/gan/logic/utils/fonction_util.py : contains different function to use in the prediction.
+
      - templates/: contains static data as well as placeholders for dynamic data used by Flask.
+
      - doc/ : folder for the 
-     - upload_folder/: contains the file that are upload from the app
+
+     - upload_folder/: contains the file that are upload from the app.
+
      - output/: output file predicted 
 
-- Dockerize the Flask application (dockerfile)
+	- *Dockerize the Flask application (dockerfile)*
 ```
-    cd to the restplu_test
+    cd to the restplus
     docker build -t $USER/tensorflow-serving-client:latest .
 ```
-- push to dockerhub
+	- *push to dockerhub*
 
 <a name="step-5"></a>
 ### Step 5: Run the app
@@ -298,6 +309,8 @@ You need to upload the label_map.pbtxt file and the image to predict.
   <img src="img/Selection_002.png" width=676 height=450>
 </p>
 
+### TODO
+deploy in cloud with Kubernetes
 ## Resources
 - [TensorFlow Object Detection API](https://github.com/tensorflow/models/tree/master/research/object_detection)
 - This 2 blog : [Blog 1](https://towardsdatascience.com/how-to-deploy-machine-learning-models-with-tensorflow-part-1-make-your-model-ready-for-serving-776a14ec3198) , [Blog 2](https://medium.com/innovation-machine/deploying-object-detection-model-with-tensorflow-serving-7f12ee59b036)
