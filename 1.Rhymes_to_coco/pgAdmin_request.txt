@@ -1,0 +1,16 @@
+1.For CATEGORIE.csv :
+
+SELECT DISTINCT  x#>>'{attributes,label}' as category_image
+FROM tv_tasks_sicara___project_run as t, jsonb_array_elements(t.output_content->'identifications') as x 
+WHERE jsonb_typeof(x) <> 'null'
+
+2.For the DATA.csv:
+
+SELECT DISTINCT cdn_file_url, output_content 
+FROM tv_tasks_sicara___project_run as t
+INNER JOIN tv_file_resources AS res ON ( res.id = (t.input_content->'image'->>'resource_id')::int)
+, jsonb_array_elements(t.output_content->'identifications') as x
+WHERE jsonb_typeof(x) <> 'null'
+LIMIT 1000
+
+
