@@ -31,7 +31,8 @@ And finally to deploy the model, we 'll use a the TensorFlow Serving serving sys
 2. You also need :
 	* pycocotools
 	* the Tensorflow Object Detection API
-3. A valid Rhymes dataset in a csv file and the category csv file who contains the differents class in the dataset.
+3. A valid Rhymes dataset in a csv file and the category csv file who contains the differents class in the dataset. 
+	* You can get this dataset from pgAdmin. Use the 2 request in this file : [pgAdmin_request.txt](https://github.com/Yraimtj/Rhymes_ObjDet_project/blob/master/1.Rhymes_to_coco/pgAdmin_request.txt).
 
 <a name="installation--"></a>
 # INSTALLATION :
@@ -72,31 +73,79 @@ The Tensorflow Object Detection API uses Protobufs to configure model and traini
 ### Step 1: Convert Rhymes_dataset to Cocoformat
 For the aim of using the rhymes dataset in the trainning step, we need to convet this to the cocoformat. ie the annotation must be formatted in JSON and contains a collection of “info”, “licenses”, “images”, “annotations”, “categories”.
 
-* Change to the Rhymes_to_coco directories
-* Create the the labels.txt file. Where the first two lines are "\_\_ignore\__" and "Background". And in the over line the differents class in the dataset .
-* Convert the dataset csv file into Coco_format with
+* Change to the 1.Rhymes_to_coco directories
+* Create the the labels.txt file. Where the first two lines are "\_\_ignore\__" and "Background". And in the over line the differents class in the dataset.
+* Convert the csv dataset file into Coco_format:
 ```
-	Rhymes2Coco_format.py
+	python Rhymes2Coco_format_SICARA.py --name=Sicara \
+		--csv_data=path_to_the_csv_dataset  \
+		--csv_cat=path_to_the_csv_category_file \
+		--output_dir=output_directory \
+		--labels=./SICARA_labels.txt \
+		--test_size=0.2
 ```
-It will Split the dataset into Train and Validation set by giving the "test_size" proportion. It also generates automaticaly the Train and Val folder.
-* Convert the COCO_format dataset to TFRecord with
+where :
+	*--name is name of the project
+	*--csv_data is path to csv from rhymes
+	*--csv_cat is path to csv containing category labels
+	*--output_dir is path to save annotation.json output and image
+	*--labels is labels.txt file
+	*--test_size percentage of validation or test size
+
+It will Split the dataset into Train and Validation set by giving the "test_size" proportion. It also generates automaticaly the output_dir,the Train,the Val folder and the annotation.json file for each train and validation folder.
+
+So the final output folder will like :
+
 ```
-	create_coco_tf_record.py
+	+output_dir
+	  -Train
+	  	-JPEGImages
+		   +sicara_train2019_0.jpg
+		   +sicara_train2019_1.jpg
+	  	-annotations.json
+	  -Val
+		-JPEGImages
+		   +sicara_val2019_0.jpg
+		   +sicara_val2019_1.jpg
+	  	-annotations.json	
+	    
 ```
-Don't forget the 'include_mask' argument.
+
+* Convert the COCO_format dataset to TFRecord :
+```
+	python create_coco_tf_record.py --logtostderr \
+	      --train_image_dir="${TRAIN_IMAGE_DIR}" \
+	      --val_image_dir="${VAL_IMAGE_DIR}" \
+	      --test_image_dir="${TEST_IMAGE_DIR}" \
+	      --train_annotations_file="${TRAIN_ANNOTATIONS_FILE}" \
+	      --val_annotations_file="${VAL_ANNOTATIONS_FILE}" \
+	      --testdev_annotations_file="${TESTDEV_ANNOTATIONS_FILE}" \
+	      --output_dir="${OUTPUT_DIR}" \
+	      --dataset_name="${DATASET_NAME}" \
+	      --include_masks=True/False"
+```
+
+Use " python create_coco_tf_record.py --h" to get definition of flag.
+
+Don't forget that 'include_mask' = True if trainning maskRcnn.
+
+
+
 
 <a name="step-2"></a>
 ### Step 2: Run a trainning process Locally
 * Create the label_map file with :
 ```
+	cd ..
 	python create_label_map.py \
 	--dataset_name = dataset_name \
         --cat_file_dir = path/to/the_category/file.csv \
         --output_path = path/to/save/the_pbtxt/file/
 ```
 * Need an Object detection pipeline configuration file. See [this page](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/configuring_jobs.md) for details on how to write a pipeline configuration.
+There is a sample of this file in the 2.Trainning_process/models/config folder.
 
-* Download a pre-trained  object detection models on COCO dataset weight from the [Tensorflow detection model zoo](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md)
+* Download a pre-trained  object detection models on COCO dataset weight from the [Tensorflow detection model zoo](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md).Put they in the 2.Trainning\_process/models/pre_trained/ folder
 
 * Recommended Directory Structure for Training and Evaluation
 
@@ -120,7 +169,7 @@ A local training job can be run with the following command:
 ```
 	PIPELINE_CONFIG_PATH={path to pipeline config file}
 	MODEL_DIR={path to model directory}
-	NUM_TRAIN_STEPS=50000
+	NUM_TRAIN_STEPS=50000 # number of step for trainning
 	SAMPLE_1_OF_N_EVAL_EXAMPLES=1
 	python object_detection/model_main.py \
 	    --pipeline_config_path=${PIPELINE_CONFIG_PATH} \
@@ -154,7 +203,7 @@ These files can be used for inference directly or we can use freeze_graph.py scr
 To create models ready for serving use :
 
 ```
-    # from  Export_a_model/
+    # from  3.Export_a_model/
 python export_model.py \
     --input_type encoded_image_string_tensor \
     --pipeline_config_path path/to/ssd_inception_v2.config \
@@ -255,9 +304,9 @@ Push the image
 __2- Create the Web server with the Tensorflow Serving Client by using Flask web application__
 
 In this part we create the client that is able “talk” over TensorFlow Serving works on gRPC protocol (tf_serving_sicara_client), use Flask as Web framework to host my TensorFlow client (api_meero.py) and Dockerize the Flask application.
-* _change directory to RESTPLUS_
+* _change directory to 4.RESTPLUS
 
-In the RESTPLUS directory you 'll see the following folder and file:
+In the 4.RESTPLUS directory you 'll see the following folder and file:
 
      - api_meero.py:entry point of the application. Here you find configuration and initialization steps.
 
@@ -288,7 +337,7 @@ from TensorFlow server.
 * _Dockerize the Flask application (dockerfile)_
 
 ```
-    cd RESTPLUS/
+    cd 4.RESTPLUS/
     docker build -t $USER/tensorflow-serving-client:latest .
 ```
 * _push to dockerhub_
